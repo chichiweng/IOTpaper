@@ -15,7 +15,7 @@ class TestTree extends JComponent implements MouseInputListener {
 		this.addMouseListener(this);
 		File file = new File("Map.txt");
 		if (!file.exists()) {
-			map = new WarehouseMap(1, 1, 3, 3); // 前面要空多少? i,j 你要幾格 i,j
+			map = new WarehouseMap(1, 1, 20,20 ); // 前面要空多少? i,j 你要幾格 i,j
 		} else {
 			try {
 				map = WarehouseMap.input(file);

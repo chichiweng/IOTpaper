@@ -16,7 +16,7 @@ class WarehouseMap implements Serializable {
    public int[][] map;
    static int STARTX = 50;
    static int STARTY = 50;
-   static int h = 50;
+   static int h = 30;
    int edgesX;
    int edgesY;
 
