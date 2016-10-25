@@ -1,5 +1,4 @@
 package Map;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -8,7 +7,6 @@ import net.datastructures.Edge;
 import net.datastructures.GraphAlgorithms;
 import net.datastructures.Map;
 import net.datastructures.Vertex;
-
 public class TreeBuilder {
 	static int[] I = { 1, 0 };
 	static int[] J = { 0, 1 };
@@ -70,80 +68,60 @@ public class TreeBuilder {
 		// System.out.printf("\nexecute spTree\n");
 		forest = GraphAlgorithms.spTree(graph, src, pathDistanceToVertex);
 
-		 String input = InputVertex();
-		// System.out.println(input);
-		// 列印最短路徑結果:
-		// 列印src到其餘各頂點的最短路徑距離
-		 Vertex<String> v = graph.getVertex(input);
-		 int d = pathDistanceToVertex.get(v);
-		 System.out.printf("\npathDistanceToVertex=\n");
-			System.out.printf(" shortest distance from %s to %s is %5d\n", 
-					src.getElement(), v.getElement(), d);
+		// String input = InputVertex();
+		// // System.out.println(input);
+		// // 列印最短路徑結果:
+		// // 列印src到其餘各頂點的最短路徑距離
+		// Vertex<String> v = graph.getVertex(input);
+		// int d = pathDistanceToVertex.get(v);
+		// System.out.printf("\npathDistanceToVertex=\n");
+		// System.out.printf(" shortest distance from %s to %s is %5d\n",
+		// src.getElement(), v.getElement(), d);
 
-//		for (Vertex<String> v : pathDistanceToVertex.keySet()) {
-
-//			if (input.equals(v.getElement()) ) {
-//				// System.out.println(v.getElement());
-//				// d=distance
-//				int d = pathDistanceToVertex.get(v);
-//				System.out.printf("\npathDistanceToVertex=\n");
-//				System.out.printf(" shortest distance from %s to %s is %5d\n", 
-//						src.getElement(), v.getElement(), d);
-//
-//			}
-//              System.out.println("wrong");
-//		}
 		
-	}
-	// System.out.println("非有效的座標");
+		// }
 
-	// // 列印每一頂點及其尋獲邊
-	// System.out.printf("\nforest=\n");
-	// for(Vertex<String> v : forest.keySet())
-	// {
-	// Edge<Integer> e = forest.get(v);
-	// Vertex<String> vParent = graph.opposite(v, e);
-	// System.out.printf(" Dijkstra tree edge: from v:%s to v:%s\n",
-	// vParent.getElement(), v.getElement());
-	// }
-	//
-	// // 列印起點到每一頂點的最短路徑
-	// System.out.printf("\nshortest paths from v:%s=\n",src.getElement());
-	// for(Vertex<String> v : graph.vertices())
-	// {
-	// Iterable<Edge<Integer>> path =
-	// GraphAlgorithms.constructPath(graph, src, v, forest);
-	//
-	// System.out.printf("\n shortest path from v:%s to v:%s with
-	// tot_len=%5d is\n",
-	// src.getElement(), v.getElement(), pathDistanceToVertex.get(v));
-	//
-	// Vertex<String> fromV = src;
-	// int count = 0;
-	// int totalLen = 0;
-	// for(Edge<Integer> e : path)
-	// {
-	// //System.out.printf("\te:%d\n",e.getElement());
-	// Vertex<String> toV = graph.opposite(fromV, e);
-	// int d = e.getElement();
-	// totalLen += d;
-	//
-	// System.out.printf("\tedge #%d, from v:%s to v:%s, len:%d (tot:%d)\n",
-	// ++count, fromV.getElement(), toV.getElement(), d, totalLen);
-	//
-	// fromV = toV;
-	// }
-	// System.out.printf("\n");
-	// }
-	// }
+		// }
+		// System.out.println("非有效的座標");
 
-	public static String InputVertex() {
-		String FinalVertex;
-		Scanner sca = new Scanner(System.in);
-		System.out.println("請輸入想查詢的座標(i_j)：(不包含空白字元、空白鍵、Tab)");
-		FinalVertex = sca.next();
-		System.out.println("您輸入的座標為：\n" + FinalVertex);
-		return FinalVertex;
+		 // 列印每一頂點及其尋獲邊
+//		 System.out.printf("\nforest=\n");
+//		 for(Vertex<String> v : forest.keySet())
+//		 {
+//		 Edge<Integer> e = forest.get(v);
+//		 Vertex<String> vParent = graph.opposite(v, e);
+//		 System.out.printf(" Dijkstra tree edge: from v:%s to v:%s\n",
+//		 vParent.getElement(), v.getElement());
+//		 }
+		
+		// // 列印起點到每一頂點的最短路徑
+		 System.out.printf("\nshortest paths from v:%s=\n",src.getElement());
+		 for(Vertex<String> v : graph.vertices())
+		 {
+		 Iterable<Edge<Integer>> path =
+		 GraphAlgorithms.constructPath(graph, src, v, forest);
+		
+		 System.out.printf("\n shortest path from v:%s to v:%s with tot_len=%5d is\n",
+		 src.getElement(), v.getElement(), pathDistanceToVertex.get(v));
+		
+		 Vertex<String> fromV = src;
+		 int count = 0;
+		 int totalLen = 0;
+		 for(Edge<Integer> e : path)
+		 {
+		 //System.out.printf("\te:%d\n",e.getElement());
+		 Vertex<String> toV = graph.opposite(fromV, e);
+		 int d = e.getElement();
+		 totalLen += d;
+		
+		 System.out.printf("\tedge #%d, from v:%s to v:%s, len:%d (tot:%d)\n",
+		 ++count, fromV.getElement(), toV.getElement(), d, totalLen);
+		
+		 fromV = toV;
+		 }
+		 System.out.printf("\n");
+		 }
+		 }
 
-	}
+	
 }

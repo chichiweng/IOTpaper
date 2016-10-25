@@ -13,9 +13,11 @@ class TestTree extends JComponent implements MouseInputListener {
 
 	public TestTree() {
 		this.addMouseListener(this);
+		this.addMouseMotionListener(this);
 		File file = new File("Map.txt");
+
 		if (!file.exists()) {
-			map = new WarehouseMap(1, 1, 20,20 ); // 前面要空多少? i,j 你要幾格 i,j
+			map = new WarehouseMap(1, 1, 3, 3); // 前面要空多少? i,j 你要幾格 i,j
 		} else {
 			try {
 				map = WarehouseMap.input(file);
@@ -33,22 +35,18 @@ class TestTree extends JComponent implements MouseInputListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getButton() == MouseEvent.BUTTON1) {
-			map.Click(e);
-		} else {
-			map.Undo(e);
-		}
-		this.repaint();
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		;
+		map.pressed(e);
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		;
+		map.released(e);
+		repaint();
 	}
 
 	@Override
@@ -60,13 +58,22 @@ class TestTree extends JComponent implements MouseInputListener {
 	public void mouseExited(MouseEvent e) {
 		map.output();
 		String[][] edges = TreeBuilder.BuilderTree(map);
+//		PathDistance.detail(edges);
 		TreeBuilder.detail(edges);
-		
+		//pd.detail();
+		// for(int i=0;i<edges.length;i++ ){
+		// for(int j=0;j<edges[i].length;j++ ){
+		// System.out.print(edges[i][j]+" ");
+		// }
+		// System.out.println();
+		// }
+		// System.out.println();
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		;
+		map.dragged(e);
+		repaint();
 	}
 
 	@Override

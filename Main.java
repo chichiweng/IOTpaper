@@ -7,7 +7,7 @@ public class Main extends JFrame {
 
    public Main() {
       super("Original map");
-      this.setBounds(0, 0, 775, 710);
+      this.setBounds(0, 0, 1200, 900);
       this.setPanel();
       this.setVisible(true);
       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
